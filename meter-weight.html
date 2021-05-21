@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Progress Meter: Weight Loss</title>
+    </head>
+    <style>
+        h1 {
+            color: #ffe000;
+            font-family: "Press Start";
+            font-size: x-large;
+            text-transform: uppercase;
+            text-shadow: 2px 2px #333;
+            text-align: center;
+        }
+        p {
+            color: white;
+            font-family: "Press Start";
+            font-size: medium;
+            text-transform: uppercase;
+            text-shadow: 2px 2px #333;
+        }
+        progress[value] {
+            -webkit-appearance: progress-bar;
+            width: 300px;
+            height: 25px;
+        }
+        progress[value]::-webkit-progress-bar {
+            background-color: #eee;
+            border-radius: 2px;
+            box-shadow: 0 5px 5px -5px #333 inset;
+        }
+        progress[value]::-webkit-progress-value {
+            background-color: green;
+            border-radius: 2px;
+        }
+    </style>
+    <body>
+        <h1>Weight Loss Progress</h1>
+        <p align="center">
+            <!-- The max is the difference between the two weights.
+            The value is the difference between the starting weight and the current weight. -->
+            385 LBS. <progress max="225" value="15.5"></progress> 160 lbs.<br>
+            Current: 369.5 lbs.<br>
+            Method(s): Intermittent Fasting 7/17
+        </p>
+    </body>
+</html>
