@@ -1,0 +1,11 @@
+#!/bin/bash
+printf "\033c"
+echo ""
+echo "Welcome to TIME ECHO!"
+echo ""
+echo "  The following script will run continuosly.  To stop it, press and hold the Control key"
+echo "  and press the C key, then release both (CTRL+C, ^C)."
+echo ""
+/usr/bin/python3 "/Users/link/Studio/Streaming Shows/Video Games/Scripts/timeecho.py"
+echo "The end."
+echo ""
