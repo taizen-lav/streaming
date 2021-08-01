@@ -30,13 +30,18 @@ global StrOutput2
 global StrOutput
 IntMinutes = 10
 IntSeconds = 0
+StrMinutes = str(IntMinutes)
+StrSeconds = " " + str(IntSeconds)
 StrMinuteUnits = " MINUTES &\n"
 StrSecondUnits = " SECONDS"
 StrOutput1 = "THE SHOW WILL\nCOMMENCE IN:\n\n"
-StrOutput2 = str(IntMinutes) + StrMinuteUnits + " " + str(IntSeconds) + StrSecondUnits
+StrOutput2 = StrMinutes + StrMinuteUnits + StrSeconds + StrSecondUnits
 StrOutput = StrOutput1 + StrOutput2
 
 # Putting the initial output into the text file.
+with open(FilePath, 'w', encoding='utf-8') as ThisFile:
+        ThisFile.write("")
+sleep(1)
 with open(FilePath, 'w', encoding='utf-8') as ThisFile:
         ThisFile.write(StrOutput)
 # print (StrOutput + "\n\n")
