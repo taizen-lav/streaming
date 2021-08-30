@@ -1,4 +1,6 @@
 <html>
+    <!-- Adjust only the NowWeight and IntmFast variables.  Everything else will calculate
+    based on the MinWeight and MaxWeight values.  Adjust those to edit the scope. -->
     <script>
         function values() {
             var IntmFast = "4/20 hrs.";
@@ -58,7 +60,6 @@
         <p align="center">
             <!-- The max is the difference between the two weights.
             The value is the difference between the starting weight and the current weight. -->
-            
             Start: <span id="MaxWeight"></span> lbs., Goal: <span id="MinWeight"></span> lbs. (-<span id="MaxMeter"></span>lbs.)<br>
             Current: <span id="NowWeight"></span> lbs., Lost: <span id="NowMeter"></span> lbs. (<span id="NowPercent"></span>%)<br>
             Method(s): Intermittent Fasting (<span id="IntmFast"></span>)
