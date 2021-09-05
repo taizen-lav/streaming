@@ -5,47 +5,39 @@
 # Copyright © 2021 Link Valiant
 #
 # This script counts down minutes and seconds.  It uses nothing
-#   fancy.  It simply takes pre-defined integers for the minute
+#   fancy.  It simply takes argument integers for the minute
 #   and second values and places them in a formatted text file
 #   every second to use it a text overlay for streaming broadcast
 #   applications such as OBS Studio, Streamlabs OBS, and OBSLive.
 #
 
 # Importing necessary libraries.
+import argparse
 import os.path
 from os.path import expanduser
 from time import sleep
 
-# Setting constant and initial variables.
+# Collect information from command line parameters.
+parser = argparse.ArgumentParser()
+parser.add_argument("-m", "-minutes", help="The number of minutes (required).", type=int)
+parser.add_argument("-s", "-seconds", help="The number of seconds (required).", type=int)
+args = parser.parse_args()
+
+# Setting constant and initial variables and display.
 FolderHome = os.path.expanduser("~")
 FolderRest = "Studio/Streaming Shows/Video Games/Overlays"
 FileName = "timedown.txt"
 FilePath = os.path.join(FolderHome, FolderRest, FileName)
 global IntMinutes
 global IntSeconds
+global StrHourUnits
 global StrMinuteUnits
 global StrSecondUnits
 global StrOutput1
 global StrOutput2
 global StrOutput
-IntMinutes = 10
-IntSeconds = 0
-StrMinutes = str(IntMinutes)
-StrSeconds = " " + str(IntSeconds)
-StrMinuteUnits = " MINUTES &\n"
-StrSecondUnits = " SECONDS"
-StrOutput1 = "THE SHOW WILL\nCOMMENCE IN:\n\n"
-StrOutput2 = StrMinutes + StrMinuteUnits + StrSeconds + StrSecondUnits
-StrOutput = StrOutput1 + StrOutput2
-
-# Putting the initial output into the text file.
-with open(FilePath, 'w', encoding='utf-8') as ThisFile:
-        ThisFile.write("")
-sleep(1)
-with open(FilePath, 'w', encoding='utf-8') as ThisFile:
-        ThisFile.write(StrOutput)
-# print (StrOutput + "\n\n")
-sleep(1)
+IntMinutes = args.m
+IntSeconds = args.s
 
 # Creating function for checking the time variables for zeroes.  If the 
 #    seconds are zero, it'll check for whether or not the minutes variable
@@ -56,7 +48,7 @@ def CheckForZero():
     global IntSeconds
     if IntSeconds == 0:
         if IntMinutes == 0:
-            StrOutput = "THE SHOW\nWILL COMMENCE\nSHORTLY."
+            StrOutput = "THE SHOW WILL\nCOMMENCE VERY\nSHORTLY."
             with open(FilePath, 'w', encoding='utf-8') as ThisFile:
                 ThisFile.write(StrOutput)
             # print (StrOutput + "\n\n")
@@ -104,7 +96,15 @@ def MakeOutput():
 
     with open(FilePath, 'w', encoding='utf-8') as ThisFile:
         ThisFile.write(StrOutput)
-    # print (StrOutput + "\n\n")
+
+# Putting the initial output into the text file.
+with open(FilePath, 'w', encoding='utf-8') as ThisFile:
+        ThisFile.write("")
+StrOutput1 = "THE SHOW WILL\nCOMMENCE IN:\n\n"
+CheckForZero()
+CountDown()
+MakeOutput()
+sleep(1)
 
 # Calling the function repeatedly once every second until the script is stopped
 #    when it checks for zeroes and finds both the minutes and seconds values are
