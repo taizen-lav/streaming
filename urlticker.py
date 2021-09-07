@@ -45,6 +45,7 @@ StrIG = "INSTAGRAM.COM/"
 StrHandle = "TAIZENORG"
 StrURLWebsite = StrURLPrefix + StrWebsite
 StrURLWebsiteAndPrefix = StrURLWebsite + StrURLPrefix
+TickerCount = 0
 
 # Creating functions for placing various URLs in the text file.
 def ShowWebsiteOnly():
@@ -92,6 +93,7 @@ def ShowIG():
 
 # Calling the function repeatedly once every second until the script is stopped by.
 #   way of a keyboard initiated break (CTRL+C on Windows and Linux,^C on macOS).
+print ("URL ticking has begun.")
 with open(FilePath, 'w', encoding='utf-8') as ThisFile:
         ThisFile.write(StrURLWebsite)
 sleep(5)
@@ -105,3 +107,5 @@ while True:
     ShowIG()
     ShowPrefix()
     ShowWebsiteOnly()
+    TickerCount += 1
+    print ("--> " + str(TickerCount) + " URL ticks.")
