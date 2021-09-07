@@ -28,10 +28,9 @@ global StrWebsite
 global StrTwitter
 global StrFB
 global StrIG
-global ArrTwitterSplit
-global ArrFBSplit
-global ArrIGSplit
+global StrHandle
 global StrURLWebsite
+global StrURLWebsiteAndPrefix
 global StrURLTwitter
 global StrURLFB
 global StrURLIG
@@ -40,54 +39,69 @@ global StrShowFB
 global StrShowIG
 StrURLPrefix = "HTTPS://"
 StrWebsite = "TAIZEN.ORG\n"
-StrTwitter = "TWITTER.COM/TAIZENORG"
-StrFB = "FACEBOOK.COM/TAIZENORG"
-StrIG = "INSTAGRAM.COM/TAIZENORG"
+StrTwitter = "TWITTER.COM/"
+StrFB = "FACEBOOK.COM/"
+StrIG = "INSTAGRAM.COM/"
+StrHandle = "TAIZENORG"
 StrURLWebsite = StrURLPrefix + StrWebsite
-StrURLTwitter = StrURLPrefix + StrTwitter
-StrURLFB = StrURLPrefix + StrFB
-StrURLIG = StrURLPrefix + StrIG
-StrShowTwitter = StrURLWebsite + StrURLTwitter
-StrShowFB = StrURLWebsite + StrURLFB
-StrShowIG = StrURLWebsite + StrURLIG
-ArrTwitterSplit = list(StrShowTwitter)
-ArrFBSplit = list(StrShowFB)
-ArrIGSplit = list(StrShowIG)
+StrURLWebsiteAndPrefix = StrURLWebsite + StrURLPrefix
 
 # Creating functions for placing various URLs in the text file.
 def ShowWebsiteOnly():
     with open(FilePath, 'w', encoding='utf-8') as ThisFile:
         ThisFile.write(StrURLWebsite)
-    sleep(299)
+    sleep(300)
+
+def ShowPrefix():
+    with open(FilePath, 'w', encoding='utf-8') as ThisFile:
+        ThisFile.write(StrURLWebsiteAndPrefix)
+    sleep(2)
 
 def ShowTwitter():
-    sleep(1)
     with open(FilePath, 'w', encoding='utf-8') as ThisFile:
-        ThisFile.write(StrShowTwitter)
-    sleep(5)
+        ThisFile.write(StrURLWebsiteAndPrefix + StrTwitter)
+    sleep(2)
     with open(FilePath, 'w', encoding='utf-8') as ThisFile:
-        ThisFile.write(StrURLWebsite)
+        ThisFile.write(StrURLWebsiteAndPrefix + StrTwitter + StrHandle)
+    sleep(6)
+    with open(FilePath, 'w', encoding='utf-8') as ThisFile:
+        ThisFile.write(StrURLWebsiteAndPrefix + StrTwitter)
+    sleep(2)
 
 def ShowFB():
-    sleep(1)
     with open(FilePath, 'w', encoding='utf-8') as ThisFile:
-        ThisFile.write(StrShowFB)
-    sleep(5)
+        ThisFile.write(StrURLWebsiteAndPrefix + StrFB)
+    sleep(2)
     with open(FilePath, 'w', encoding='utf-8') as ThisFile:
-        ThisFile.write(StrURLWebsite)
+        ThisFile.write(StrURLWebsiteAndPrefix + StrFB + StrHandle)
+    sleep(6)
+    with open(FilePath, 'w', encoding='utf-8') as ThisFile:
+        ThisFile.write(StrURLWebsiteAndPrefix + StrFB)
+    sleep(2)
 
 def ShowIG():
-    sleep(1)
     with open(FilePath, 'w', encoding='utf-8') as ThisFile:
-        ThisFile.write(StrShowIG)
-    sleep(5)
+        ThisFile.write(StrURLWebsiteAndPrefix + StrIG)
+    sleep(2)
     with open(FilePath, 'w', encoding='utf-8') as ThisFile:
-        ThisFile.write(StrURLWebsite)
+        ThisFile.write(StrURLWebsiteAndPrefix + StrIG + StrHandle)
+    sleep(6)
+    with open(FilePath, 'w', encoding='utf-8') as ThisFile:
+        ThisFile.write(StrURLWebsiteAndPrefix + StrIG)
+    sleep(2)
 
 # Calling the function repeatedly once every second until the script is stopped by.
 #   way of a keyboard initiated break (CTRL+C on Windows and Linux,^C on macOS).
+with open(FilePath, 'w', encoding='utf-8') as ThisFile:
+        ThisFile.write(StrURLWebsite)
+sleep(2)
+
 while True:
+    ShowPrefix()
     ShowTwitter()
+    ShowPrefix()
     ShowFB()
+    ShowPrefix()
     ShowIG()
+    ShowPrefix()
     ShowWebsiteOnly()
