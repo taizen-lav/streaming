@@ -94,7 +94,7 @@ def ShowIG():
 #   way of a keyboard initiated break (CTRL+C on Windows and Linux,^C on macOS).
 with open(FilePath, 'w', encoding='utf-8') as ThisFile:
         ThisFile.write(StrURLWebsite)
-sleep(2)
+sleep(5)
 
 while True:
     ShowPrefix()
