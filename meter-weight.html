@@ -1,12 +1,23 @@
 <html>
-    <!-- Adjust only the NowWeight and IntmFast variables.  Everything else will calculate
-    based on the MinWeight and MaxWeight values.  Adjust those to edit the scope. -->
-    <script>
-        function values() {
-            var IntmFast = "4/20 hrs.";
-            var NowWeight = 350.0;
-            var MaxWeight = 385.0;
-            var MinWeight = 160.0;
+    <!-- Use URL parameters to define values.  Use "now" for current weight (number only),
+    "start" for the beginning weight (number only), "goal" for the goal weight (number only),
+    and "method" for the method in which weight loss is being acheived (text).  All weight
+    values are to be in pounds (lbs.).   -->
+    <script>        
+        const queryString = window.location.search;
+        console.log(queryString);
+
+        const urlParams = new URLSearchParams(queryString);
+        var WLMethod = urlParams.getAll('method')
+            alert(method)
+        var NowWeight = urlParams.get('now')
+            alert(now)
+        var MaxWeight = urlParams.get('start')
+            alert(start)
+        var MinWeight = urlParams.get('goal')
+            alert(goal)
+
+        function values(WLMethod,NowWeight,MaxWeight,MinWeight) {
             var MaxMeter = MaxWeight - MinWeight;
             var NowMeter = MaxWeight - NowWeight;
             var NowPercent = ((NowMeter / MaxMeter) * 100);
@@ -18,7 +29,7 @@
             document.getElementById("NowWeight").innerHTML = String(NowWeight.toFixed(2));
             document.getElementById("NowMeter").innerHTML = String(NowMeter.toFixed(2));
             document.getElementById("NowPercent").innerHTML = String(NowPercent.toFixed(2));
-            document.getElementById("IntmFast").innerHTML = IntmFast;
+            document.getElementById("WLMethod").innerHTML = WLMethod;
         }
     </script>
     <head>
@@ -55,14 +66,14 @@
             border-radius: 2px;
         }
     </style>
-    <body onload="values()">
+    <body onload="getUrlVars(),values(WLMethod,NowWeight,MaxWeight,MinWeight)">
         <h1><span id="TitleText"></span></h1>
         <p align="center">
             <!-- The max is the difference between the two weights.
             The value is the difference between the starting weight and the current weight. -->
             Start: <span id="MaxWeight"></span>lbs.&nbsp;&nbsp;Goal: <span id="MinWeight"></span>lbs. (-<span id="MaxMeter"></span>lbs.)<br>
             Current: <span id="NowWeight"></span>lbs.&nbsp;&nbsp;&nbsp;&nbsp;Lost: <span id="NowMeter"></span>lbs. (<span id="NowPercent"></span>%)<br>
-            Method(s): Intermittent Fasting (<span id="IntmFast"></span>)
+            Method(s): <span id="WLMethod"></span>
         </p>
     </body>
 </html>

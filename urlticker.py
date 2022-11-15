@@ -37,12 +37,14 @@ global StrURLIG
 global StrShowTwitter
 global StrShowFB
 global StrShowIG
+global StrShowInsideDharma
 StrURLPrefix = "HTTPS://"
 StrWebsite = "TAIZEN.ORG\n"
 StrTwitter = "TWITTER.COM/"
 StrFB = "FACEBOOK.COM/"
 StrIG = "INSTAGRAM.COM/"
 StrHandle = "TAIZENORG"
+StrInsideDharma = "INSIDEDHARMA.ORG"
 StrURLWebsite = StrURLPrefix + StrWebsite
 StrURLWebsiteAndPrefix = StrURLWebsite + StrURLPrefix
 TickerCount = 0
@@ -91,6 +93,11 @@ def ShowIG():
         ThisFile.write(StrURLWebsiteAndPrefix + StrIG)
     sleep(2)
 
+def ShowInsideDharma():
+    with open(FilePath, 'w', encoding='utf-8') as ThisFile:
+        ThisFile.write(StrURLWebsiteAndPrefix + StrInsideDharma)
+    sleep(6)
+
 # Calling the function repeatedly once every second until the script is stopped by.
 #   way of a keyboard initiated break (CTRL+C on Windows and Linux,^C on macOS).
 print ("URL ticking has begun.")
@@ -105,6 +112,8 @@ while True:
     ShowFB()
     ShowPrefix()
     ShowIG()
+    ShowPrefix()
+    ShowInsideDharma()
     ShowPrefix()
     ShowWebsiteOnly()
     TickerCount += 1
